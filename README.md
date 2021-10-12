@@ -44,5 +44,5 @@ Order doesn't matter when inputting parameters. You can put any parameters you n
 
 
 Permissions:
-customitem
+customitem,
 customitem.give
