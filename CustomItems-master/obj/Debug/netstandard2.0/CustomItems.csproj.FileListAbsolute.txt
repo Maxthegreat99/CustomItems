@@ -1,0 +1,3 @@
+C:\Users\Julian\Documents\GitHub\CustomItems\CustomItems-master\obj\Debug\netstandard2.0\CustomItems.csproj.AssemblyReference.cache
+C:\Users\Julian\Documents\GitHub\CustomItems\CustomItems-master\obj\Debug\netstandard2.0\CustomItems.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Julian\Documents\GitHub\CustomItems\CustomItems-master\obj\Debug\netstandard2.0\CustomItems.csproj.CoreCompileInputs.cache

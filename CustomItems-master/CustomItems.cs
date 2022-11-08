@@ -6,6 +6,7 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using Terraria.DataStructures;
 
 namespace CustomItems {
     [ApiVersion(2, 1)]
@@ -59,7 +60,7 @@ namespace CustomItems {
             Item item = items[0];
 
             TSPlayer player = new TSPlayer(args.Player.Index);
-            int itemIndex = Item.NewItem((int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
+            int itemIndex = Item.NewItem(Projectile.GetNoneSource(), (int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
 
             Item targetItem = Main.item[itemIndex];
             targetItem.playerIndexTheItemIsReservedFor = args.Player.Index;
@@ -160,7 +161,7 @@ namespace CustomItems {
             Item item = items[0];
 
             TSPlayer player = new TSPlayer(players[0].Index);
-            int itemIndex = Item.NewItem((int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
+            int itemIndex = Item.NewItem( Projectile.GetNoneSource(), (int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
 
             Item targetItem = Main.item[itemIndex];
             targetItem.playerIndexTheItemIsReservedFor = args.Player.Index;
