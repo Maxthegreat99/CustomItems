@@ -1,32 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Julian\\Documents\\GitHub\\CustomItems\\CustomItems-master\\CustomItems.csproj": {}
+    "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\CustomItems.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Julian\\Documents\\GitHub\\CustomItems\\CustomItems-master\\CustomItems.csproj": {
+    "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\CustomItems.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Julian\\Documents\\GitHub\\CustomItems\\CustomItems-master\\CustomItems.csproj",
+        "projectUniqueName": "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\CustomItems.csproj",
         "projectName": "CustomItems",
-        "projectPath": "C:\\Users\\Julian\\Documents\\GitHub\\CustomItems\\CustomItems-master\\CustomItems.csproj",
-        "packagesPath": "C:\\Users\\Julian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Julian\\Documents\\GitHub\\CustomItems\\CustomItems-master\\obj\\",
+        "projectPath": "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\CustomItems.csproj",
+        "packagesPath": "C:\\Users\\mcjac\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Users\\mcjac\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Julian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mcjac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mcjac\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -37,22 +41,12 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.CSharp": {
               "target": "Package",
               "version": "[4.7.0, )"
-            },
-            "NETStandard.Library": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
-            },
-            "System.Data.DataSetExtensions": {
-              "target": "Package",
-              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -66,7 +60,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

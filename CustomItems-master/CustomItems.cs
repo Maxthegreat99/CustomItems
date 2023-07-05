@@ -12,7 +12,7 @@ namespace CustomItems {
     [ApiVersion(2, 1)]
     public class CustomItems : TerrariaPlugin {
         public override string Name => "CustomItems";
-        public override string Author => "Updated by Comdar";
+        public override string Author => "Interverse, updated by Comdar + RenderBr + Maxthegreat99";
         public override string Description => "Allows you to spawn custom items";
         public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -142,7 +142,7 @@ namespace CustomItems {
                 return;
             }
 
-            List<TSPlayer> players = TShock.Players.Where(c => c.Name.Contains(args.Parameters[0])).ToList();
+            List<TSPlayer> players = TSPlayer.FindByNameOrID(args.Parameters[0]); //TShock.Players.Where(c => c.Name.Contains(args.Parameters[0])).ToList();
             if (players.Count != 1) {
                 args.Player.SendErrorMessage("Failed to find player of: " + args.Parameters[0]);
                 return;

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Platforms>AnyCPU;x64</Platforms>
@@ -12,20 +12,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModFramework">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\ModFramework.dll</HintPath>
+      <HintPath>..\..\TShock-5.2-for-Terraria-1.4.4.9-win-x64-Release\bin\ModFramework.dll</HintPath>
     </Reference>
     <Reference Include="OTAPI">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\OTAPI.dll</HintPath>
+      <HintPath>..\..\TShock-5.2-for-Terraria-1.4.4.9-win-x64-Release\bin\OTAPI.dll</HintPath>
     </Reference>
     <Reference Include="TerrariaServer">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\TerrariaServer.dll</HintPath>
+      <HintPath>..\..\TShock-5.2-for-Terraria-1.4.4.9-win-x64-Release\bin\TerrariaServer.dll</HintPath>
     </Reference>
     <Reference Include="TShockAPI">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\ServerPlugins\TShockAPI.dll</HintPath>
+      <HintPath>..\..\TShock-5.2-for-Terraria-1.4.4.9-win-x64-Release\ServerPlugins\TShockAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
