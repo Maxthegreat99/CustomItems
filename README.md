@@ -22,7 +22,7 @@ or leave the server, so you cannot transfer it to another person.
 
 `knockback (kb)` - Custom knockback.   
 
-`useanimation (ua)` - Amount of time an item will linger when a player uses it, *<ins>Use with usetime so when an item has finished firing, the animation will finish at the same time.<ins>*  
+`useanimation (ua)` - Amount of time an item will linger when a player uses it, *<ins>Use with `usetime` so when an item has finished firing, the animation will finish at the same time.<ins>*  
 
 `usetime (ut)` - Amount of time it takes to use.  
 
