@@ -5,7 +5,7 @@ or leave the server, so you cannot transfer it to another person.
 - Originally made by [Interverse](https://github.com/Interverse/CustomItems).
 - Updated to **TShock** `4.5.5` by [comdar16](https://github.com/comdar16/CustomItems).
 - Updated to **TShock** `5.0` by [RenderBr](https://github.com/RenderBr/CustomItems).
-- Fixed gcitem cmd and ported to **TShock** `5.2` by me.
+- Fixed `gcitem` cmd and ported to **TShock** `5.2` by me.
 
 **Command:**
 
