@@ -1,0 +1,103 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CustomItems/1.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "ModFramework": "1.1.7.0",
+          "OTAPI": "1.4.4.9",
+          "TerrariaServer": "5.2.0.0",
+          "TShockAPI": "5.2.0.0"
+        },
+        "runtime": {
+          "CustomItems.dll": {}
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {},
+      "ModFramework/1.1.7.0": {
+        "runtime": {
+          "ModFramework.dll": {
+            "assemblyVersion": "1.1.7.0",
+            "fileVersion": "1.1.7.0"
+          }
+        }
+      },
+      "OTAPI/1.4.4.9": {
+        "runtime": {
+          "OTAPI.dll": {
+            "assemblyVersion": "1.4.4.9",
+            "fileVersion": "1.4.4.9"
+          }
+        }
+      },
+      "TerrariaServer/5.2.0.0": {
+        "runtime": {
+          "TerrariaServer.dll": {
+            "assemblyVersion": "5.2.0.0",
+            "fileVersion": "5.2.0.0"
+          }
+        }
+      },
+      "TShockAPI/5.2.0.0": {
+        "runtime": {
+          "TShockAPI.dll": {
+            "assemblyVersion": "5.2.0.0",
+            "fileVersion": "5.2.0.0"
+          }
+        }
+      },
+      "OTAPI.Runtime/0.0.0.0": {
+        "runtime": {
+          "OTAPI.Runtime.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CustomItems/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
+    },
+    "ModFramework/1.1.7.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OTAPI/1.4.4.9": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TerrariaServer/5.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TShockAPI/5.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OTAPI.Runtime/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
