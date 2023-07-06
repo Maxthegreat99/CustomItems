@@ -14,7 +14,7 @@ namespace CustomItems {
         public override string Name => "CustomItems";
         public override string Author => "Interverse, updated by Comdar + RenderBr + Maxthegreat99";
         public override string Description => "Allows you to spawn custom items";
-        public override Version Version => Assembly.GetExecutingAssembly().GetName().Version;
+        public override Version Version => new Version(1, 3, 1);
 
         public CustomItems(Main game) : base(game) {
         }
