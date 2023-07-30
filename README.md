@@ -38,9 +38,11 @@ or leave the server, so you cannot transfer it to another person.
 
 `ammo (a)` - Gives an item the ammo attribute.  
 
-`useammo` - Tells when ammo an item uses, useammo 0 means the weapon will not use ammo.  
+`useammo (uam)` - Tells when ammo an item uses, useammo 0 means the weapon will not use ammo.  
 
 `notammo (na)` - Tells whether an item is not an ammo, Either true or false.
+
+`stack (st)` - Determines how many of that item you should be given.
 
 **Order doesn't matter when inputting parameters. You can put any parameters you need, however you want them.**
 
