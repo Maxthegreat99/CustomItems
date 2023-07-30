@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Ndd6lLBqTH67J3v2AWXEKuwbo7pSMfnmv9qN7ww6CgJyxJEwnObYVu5Br4q3ZKSlRPQee6YSHiuaXXgxQl1rxw==",
+  "dgSpecHash": "Bibka1GwE8tKgJATHonxmupJeuChgsKV9StVVTejaeufa6wunDvUMV22OSTgoM1cAcPFoGydN7nX0USPBKay3A==",
   "success": true,
   "projectFilePath": "C:\\Users\\mcjac\\CustomItems\\CustomItems-master\\CustomItems.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mcjac\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+    "C:\\Users\\mcjac\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\mcjac\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.19\\microsoft.windowsdesktop.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\mcjac\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.19\\microsoft.netcore.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\mcjac\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.19\\microsoft.aspnetcore.app.ref.6.0.19.nupkg.sha512"
   ],
   "logs": []
 }

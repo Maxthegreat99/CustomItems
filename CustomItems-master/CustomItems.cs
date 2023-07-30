@@ -6,7 +6,6 @@ using System.Reflection;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
-using Terraria.DataStructures;
 
 namespace CustomItems {
     [ApiVersion(2, 1)]
@@ -14,7 +13,7 @@ namespace CustomItems {
         public override string Name => "CustomItems";
         public override string Author => "Interverse, updated by Comdar + RenderBr + Maxthegreat99";
         public override string Description => "Allows you to spawn custom items";
-        public override Version Version => new Version(1, 3, 1);
+        public override Version Version => new Version(1, 3, 2);
 
         public CustomItems(Main game) : base(game) {
         }
@@ -32,13 +31,13 @@ namespace CustomItems {
 
         private void OnInitialize(EventArgs args) {
             Commands.ChatCommands.Add(new Command("customitem", CustomItem, "customitem", "citem") {
-                HelpText = "/customitem <id/itemname> <parameters> <#> ... \nParameters: hexcolor, damage, knockback, useanimation, " +
-                "usetime, shoot, shootspeed, width, height, scale, ammo, useammo, notammo."
+                HelpText = "/customitem <id/itemname> <parameters> <#> ... \nParameters: hexcolor (hc), damage (d), knockback (kb), useanimation (ua), " +
+                "usetime (ut), shoot (s), shootspeed (ss), width (w), height (h), scale (sc), ammo (a), useammo (uam), notammo (na), stack (st)."
             });
 
             Commands.ChatCommands.Add(new Command("customitem.give", GiveCustomItem, "givecustomitem", "gcitem") {
-                HelpText = "/givecustomitem <name> <id/itemname> <parameters> <#> ... \nParameters: hexcolor, damage, knockback, useanimation, " +
-                "usetime, shoot, shootspeed, width, height, scale, ammo, useammo, notammo."
+                HelpText = "/givecustomitem <name> <id/itemname> <parameters> <#> ... \nParameters: hexcolor (hc), damage (d), knockback (kb), useanimation (ua), " +
+                "usetime (ut), shoot (s), shootspeed (ss), width (w), height (h), scale (sc), ammo (a), useammo (uam), notammo (na), stack (st)."
             });
         }
 
@@ -47,8 +46,8 @@ namespace CustomItems {
             int num = parameters.Count();
 
             if (num == 0) {
-                args.Player.SendErrorMessage("Invalid Syntax. /customitem <id/itemname> <parameters> <#> ... \nParameters: hexcolor, damage, knockback, useanimation, " +
-                "usetime, shoot, shootspeed, width, height, scale, ammo, useammo, notammo.");
+                args.Player.SendErrorMessage("Invalid Syntax. /customitem <id/itemname> <parameters> <#> ... \nParameters: hexcolor (hc), damage (d), knockback (kb), useanimation (ua), " +
+                "usetime (ut), shoot (s), shootspeed (ss), width (w), height (h), scale (sc), ammo (a), useammo (uam), notammo (na), stack (st).");
                 return;
             }
 
@@ -60,76 +59,10 @@ namespace CustomItems {
             Item item = items[0];
 
             TSPlayer player = new TSPlayer(args.Player.Index);
-            int itemIndex = Item.NewItem(Projectile.GetNoneSource(), (int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
 
-            Item targetItem = Main.item[itemIndex];
-            targetItem.playerIndexTheItemIsReservedFor = args.Player.Index;
+            Item targetItem = ModifyAndGiveCustomItem(parameters, player, item, 1);
 
-            var pairedInputs = SplitIntoPairs<string>(parameters.Skip(1).ToArray());
-
-            foreach (var pair in pairedInputs) {
-                string param = pair[0];
-                string arg = pair[1];
-                switch (param) {
-                    case "hexcolor":
-                    case "hc":
-                        targetItem.color = new Color(int.Parse(arg.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
-                            int.Parse(arg.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
-                            int.Parse(arg.Substring(4, 2), System.Globalization.NumberStyles.HexNumber));
-                        break;
-                    case "damage":
-                    case "d":
-                        targetItem.damage = int.Parse(arg);
-                        break;
-                    case "knockback":
-                    case "kb":
-                        targetItem.knockBack = int.Parse(arg);
-                        break;
-                    case "useanimation":
-                    case "ua":
-                        targetItem.useAnimation = int.Parse(arg);
-                        break;
-                    case "usetime":
-                    case "ut":
-                        targetItem.useTime = int.Parse(arg);
-                        break;
-                    case "shoot":
-                    case "s":
-                        targetItem.shoot = int.Parse(arg);
-                        break;
-                    case "shootspeed":
-                    case "ss":
-                        targetItem.shootSpeed = int.Parse(arg);
-                        break;
-                    case "width":
-                    case "w":
-                        targetItem.width = int.Parse(arg);
-                        break;
-                    case "height":
-                    case "h":
-                        targetItem.height = int.Parse(arg);
-                        break;
-                    case "scale":
-                    case "sc":
-                        targetItem.scale = int.Parse(arg);
-                        break;
-                    case "ammo":
-                    case "a":
-                        targetItem.ammo = int.Parse(arg);
-                        break;
-                    case "useammo":
-                        targetItem.useAmmo = int.Parse(arg);
-                        break;
-                    case "notammo":
-                    case "na":
-                        targetItem.notAmmo = Boolean.Parse(arg);
-                        break;
-                }
-            }
-
-            TSPlayer.All.SendData(PacketTypes.UpdateItemDrop, null, itemIndex);
-            TSPlayer.All.SendData(PacketTypes.ItemOwner, null, itemIndex);
-            TSPlayer.All.SendData(PacketTypes.TweakItem, null, itemIndex, 255, 63);
+            args.Player.SendSuccessMessage("You were sucessfully given {0} custom {1}!", targetItem.stack, targetItem.HoverName);
         }
 
         private void GiveCustomItem(CommandArgs args) {
@@ -137,12 +70,12 @@ namespace CustomItems {
             int num = parameters.Count();
 
             if (num == 0) {
-                args.Player.SendErrorMessage("Invalid Syntax. /givecustomitem <name> <id/itemname> <parameters> <#> ... \nParameters: hexcolor, damage, knockback, useanimation, " +
-                "usetime, shoot, shootspeed, width, height, scale, ammo, useammo, notammo.");
+                args.Player.SendErrorMessage("Invalid Syntax. /givecustomitem <name> <id/itemname> <parameters> <#> ... \nParameters: hexcolor (hc), damage (d), knockback (kb), useanimation (ua), " +
+                "usetime (ut), shoot (s), shootspeed (ss), width (w), height (h), scale (sc), ammo (a), useammo (uam), notammo (na), stack (st).");
                 return;
             }
 
-            List<TSPlayer> players = TSPlayer.FindByNameOrID(args.Parameters[0]); //TShock.Players.Where(c => c.Name.Contains(args.Parameters[0])).ToList();
+            List<TSPlayer> players = TSPlayer.FindByNameOrID(args.Parameters[0]); 
             if (players.Count != 1) {
                 args.Player.SendErrorMessage("Failed to find player of: " + args.Parameters[0]);
                 return;
@@ -161,77 +94,104 @@ namespace CustomItems {
             Item item = items[0];
 
             TSPlayer player = new TSPlayer(players[0].Index);
-            int itemIndex = Item.NewItem( Projectile.GetNoneSource(), (int)player.X, (int)player.Y, item.width, item.height, item.type, item.maxStack);
 
-            Item targetItem = Main.item[itemIndex];
-            targetItem.playerIndexTheItemIsReservedFor = args.Player.Index;
+            Item targetItem = ModifyAndGiveCustomItem(parameters, player, item, 2);
 
-            var pairedInputs = SplitIntoPairs<string>(parameters.Skip(2).ToArray());
-            foreach (var pair in pairedInputs) {
+            player.SendSuccessMessage("{0} gave you {1} custom {2}!",args.Player.Name , targetItem.stack, targetItem.HoverName );
+            args.Player.SendSuccessMessage("Sucessfully gave {0} {1} custom {2}!", player.Name, targetItem.stack, targetItem.HoverName);
+        }
+        private Item ModifyAndGiveCustomItem(List<string> parameters, TSPlayer target, Item item , int skip )
+        {
+            Item _targetItem = TShock.Utils.GetItemById(item.type);
+            var pairedInputs = SplitIntoPairs<string>(parameters.Skip(skip).ToArray());
+
+            foreach (var pair in pairedInputs)
+            {
                 string param = pair[0];
                 string arg = pair[1];
-                switch (param) {
+                switch (param)
+                {
                     case "hexcolor":
                     case "hc":
-                        targetItem.color = new Color(int.Parse(arg.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
+                        _targetItem.color = new Color(int.Parse(arg.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
                             int.Parse(arg.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
                             int.Parse(arg.Substring(4, 2), System.Globalization.NumberStyles.HexNumber));
                         break;
                     case "damage":
                     case "d":
-                        targetItem.damage = int.Parse(arg);
+                        _targetItem.damage = int.Parse(arg);
                         break;
                     case "knockback":
                     case "kb":
-                        targetItem.knockBack = int.Parse(arg);
+                        _targetItem.knockBack = int.Parse(arg);
                         break;
                     case "useanimation":
                     case "ua":
-                        targetItem.useAnimation = int.Parse(arg);
+                        _targetItem.useAnimation = int.Parse(arg);
                         break;
                     case "usetime":
                     case "ut":
-                        targetItem.useTime = int.Parse(arg);
+                        _targetItem.useTime = int.Parse(arg);
                         break;
                     case "shoot":
                     case "s":
-                        targetItem.shoot = int.Parse(arg);
+                        _targetItem.shoot = int.Parse(arg);
                         break;
                     case "shootspeed":
                     case "ss":
-                        targetItem.shootSpeed = int.Parse(arg);
+                        _targetItem.shootSpeed = int.Parse(arg);
                         break;
                     case "width":
                     case "w":
-                        targetItem.width = int.Parse(arg);
+                        _targetItem.width = int.Parse(arg);
                         break;
                     case "height":
                     case "h":
-                        targetItem.height = int.Parse(arg);
+                        _targetItem.height = int.Parse(arg);
                         break;
                     case "scale":
                     case "sc":
-                        targetItem.scale = int.Parse(arg);
+                        _targetItem.scale = int.Parse(arg);
                         break;
                     case "ammo":
                     case "a":
-                        targetItem.ammo = int.Parse(arg);
+                        _targetItem.ammo = int.Parse(arg);
                         break;
                     case "useammo":
-                        targetItem.useAmmo = int.Parse(arg);
+                    case "uam":
+                        _targetItem.useAmmo = int.Parse(arg);
                         break;
                     case "notammo":
                     case "na":
-                        targetItem.notAmmo = Boolean.Parse(arg);
+                        _targetItem.notAmmo = Boolean.Parse(arg);
+                        break;
+                    case "stack":
+                    case "st":
+                        _targetItem.stack = int.Parse(arg);
                         break;
                 }
             }
+            int itemIndex = Item.NewItem(Projectile.GetNoneSource(), (int)target.X, (int)target.Y, _targetItem.width, _targetItem.height, item.type, _targetItem.stack, pfix: 0, noGrabDelay: true);
+            Item targetItem = Main.item[itemIndex];
+            targetItem.playerIndexTheItemIsReservedFor = target.Index;
+
+            targetItem.damage = _targetItem.damage;
+            targetItem.knockBack = _targetItem.knockBack;
+            targetItem.useAnimation = _targetItem.useAnimation;
+            targetItem.useTime = _targetItem.useTime;
+            targetItem.shoot = _targetItem.shoot;
+            targetItem.shootSpeed = _targetItem.shootSpeed;
+            targetItem.scale = _targetItem.scale;
+            targetItem.ammo = _targetItem.ammo;
+            targetItem.useAmmo = _targetItem.useAmmo;
+            targetItem.notAmmo = _targetItem.notAmmo;
 
             TSPlayer.All.SendData(PacketTypes.UpdateItemDrop, null, itemIndex);
             TSPlayer.All.SendData(PacketTypes.ItemOwner, null, itemIndex);
             TSPlayer.All.SendData(PacketTypes.TweakItem, null, itemIndex, 255, 63);
-        }
 
+            return targetItem;
+        }
         public static T[][] SplitIntoPairs<T>(T[] input) {
             T[][] split = new T[input.Length / 2][];
 
